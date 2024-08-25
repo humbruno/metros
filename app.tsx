@@ -3,10 +3,26 @@ import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
+import { IntlProvider } from 'react-intl'
 import { ActivityIndicator, View } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 SplashScreen.preventAutoHideAsync()
+
+const messages = {
+  myMessage: 'Hello home page'
+}
+
+declare global {
+  namespace FormatjsIntl {
+    interface Message {
+      ids: keyof typeof messages
+    }
+    interface IntlConfig {
+      locale: 'en' | 'pt'
+    }
+  }
+}
 
 export function App() {
   const [loaded, error] = useFonts({
@@ -37,8 +53,10 @@ export function App() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar style="auto" />
-      <Router />
+      <IntlProvider messages={messages} locale="en" defaultLocale="en">
+        <StatusBar style="auto" />
+        <Router />
+      </IntlProvider>
     </SafeAreaProvider>
   )
 }
