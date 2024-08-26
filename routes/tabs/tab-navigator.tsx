@@ -1,9 +1,19 @@
-import { HomeTab } from '@/routes/tabs/home'
+import { spacing } from '@/lib/theme'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet } from 'react-native'
+import { AboutTab } from './about'
+import { AllStationsTab } from './all-stations'
+import { FavouritesTab } from './favourites'
+import { LinesStatusTab } from './lines-status'
 
 export type TabStackParamList = {
-  Home: undefined
+  Favourites: undefined
+  AllStations: undefined
+  LinesStatus: undefined
+  About: undefined
 }
 
 const Tab = createBottomTabNavigator<TabStackParamList>()
@@ -11,23 +21,68 @@ const Tab = createBottomTabNavigator<TabStackParamList>()
 export function TabNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={() => ({
+      screenOptions={{
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
-        tabBarStyle: styles.tabBar,
-        tabBarIconStyle: styles.tabBarIcon
-      })}
+        tabBarLabelStyle: styles.tabBarLabel,
+        tabBarIconStyle: styles.tabBarIcon,
+        tabBarStyle: styles.tabBar
+      }}
     >
-      <Tab.Screen name="Home" component={HomeTab} />
+      <Tab.Screen
+        name="Favourites"
+        component={FavouritesTab}
+        options={{
+          title: 'Favourites',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="favorite" color={color} size={size} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="AllStations"
+        component={AllStationsTab}
+        options={{
+          title: 'All Stations',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="map-signs" size={size} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="LinesStatus"
+        component={LinesStatusTab}
+        options={{
+          title: 'Lines',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="railway-alert" size={size} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="About"
+        component={AboutTab}
+        options={{
+          title: 'About',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="information"
+              size={size}
+              color={color}
+            />
+          )
+        }}
+      />
     </Tab.Navigator>
   )
 }
 
 const styles = StyleSheet.create({
   tabBar: {
-    paddingTop: 16
+    paddingVertical: spacing.sm
   },
   tabBarIcon: {
-    marginBottom: 12
-  }
+    marginTop: -3
+  },
+  tabBarLabel: {}
 })
