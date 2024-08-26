@@ -8,12 +8,22 @@ import {
 
 type Sizes = keyof typeof $sizeStyles
 type Weights = keyof typeof typography.primary
-type Presets = keyof typeof $presets
+type Variants = keyof typeof $variants
 
 type AppTextProps = {
   style?: StyleProp<TextStyle>
-  preset?: Presets
+  variant?: Variants
   weight?: Weights
+  /**
+   * @description
+   * 2xl: fontSize: 36px, lineHeight: 44px
+   * xl: fontSize: 24px, lineHeight: 34px
+   * lg: fontSize: 20px, lineHeight: 32px
+   * md: fontSize: 18px, lineHeight: 26px
+   * sm: fontSize: 16px, lineHeight: 24px
+   * xs: fontSize: 14px, lineHeight: 21px
+   * 2xs: fontSize: 12px, lineHeight: 18px
+   * */
   size?: Sizes
   children: React.ReactNode
 } & TextProps
@@ -25,10 +35,10 @@ export function AppText({
   style: $styleOverride,
   ...props
 }: AppTextProps) {
-  const preset: Presets = props.preset ?? 'default'
+  const preset: Variants = props.variant ?? 'default'
 
   const $styles: StyleProp<TextStyle> = [
-    $presets[preset],
+    $variants[preset],
     weight && $fontWeightStyles[weight],
     size && $sizeStyles[size],
     $styleOverride
@@ -64,7 +74,7 @@ const $baseStyle: StyleProp<TextStyle> = [
   { color: colors.text }
 ]
 
-const $presets = {
+const $variants = {
   default: $baseStyle,
 
   bold: [$baseStyle, $fontWeightStyles.bold] as StyleProp<TextStyle>,
