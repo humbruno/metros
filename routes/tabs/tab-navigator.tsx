@@ -5,13 +5,13 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet } from 'react-native'
 import { AboutTab } from './about'
-import { AllStationsTab } from './all-stations'
+import { AllStationsTab, TopTabsStackParamList } from './all-stations'
 import { FavouritesTab } from './favourites'
 import { LinesStatusTab } from './lines-status'
 
 export type TabStackParamList = {
   Favourites: undefined
-  AllStations: undefined
+  AllStations: TopTabsStackParamList
   LinesStatus: undefined
   About: undefined
 }
@@ -22,8 +22,8 @@ export function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: 'blue',
         tabBarLabelStyle: styles.tabBarLabel,
         tabBarIconStyle: styles.tabBarIcon,
         tabBarStyle: styles.tabBar
