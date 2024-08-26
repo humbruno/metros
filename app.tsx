@@ -1,3 +1,5 @@
+import { initApi } from '@/lib/api'
+import { useInterceptors } from '@/lib/hooks'
 import { Router } from '@/routes/router'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
@@ -36,6 +38,12 @@ export function App() {
     'Onest-SemiBold': require('@/assets/fonts/Onest-SemiBold.ttf'),
     'Onest-Thin': require('@/assets/fonts/Onest-Thin.ttf')
   })
+
+  useInterceptors()
+
+  useEffect(() => {
+    initApi()
+  }, [])
 
   useEffect(() => {
     if (loaded || error) {
