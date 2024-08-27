@@ -115,7 +115,7 @@ export function App() {
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <IntlProvider messages={messages} locale="en" defaultLocale="en">
-            <StatusBar style="auto" />
+            <StatusBar style="light" />
             <Router />
             <Toast />
           </IntlProvider>

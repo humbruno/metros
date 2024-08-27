@@ -1,3 +1,4 @@
+import { Lines } from '@/utils/constants'
 import { tokenSchema } from '@/utils/schemas'
 import { z } from 'zod'
 
@@ -19,6 +20,12 @@ export type WaitingTime = {
   sairServico: string
   UT: string
 }
+
+export type ResolvedLineWaitingTime = {
+  stationLabel: string
+  destinationLabel: string
+  isFavourite: boolean
+} & LineWaitingTime
 
 export type LineWaitingTime = Omit<WaitingTime, 'UC'>
 
@@ -46,4 +53,10 @@ export type AllLinesStatuses = {
   tipo_msg_az: string
   tipo_msg_vd: string
   tipo_msg_vm: string
+}
+
+export type FavouritedStation = {
+  stop_id: string
+  destino: string
+  line: Lines
 }

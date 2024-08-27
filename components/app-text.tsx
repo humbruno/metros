@@ -16,13 +16,13 @@ type AppTextProps = {
   weight?: Weights
   /**
    * @description
-   * 2xl: fontSize: 36px, lineHeight: 44px
+   * xxl: fontSize: 36px, lineHeight: 44px
    * xl: fontSize: 24px, lineHeight: 34px
    * lg: fontSize: 20px, lineHeight: 32px
    * md: fontSize: 18px, lineHeight: 26px
    * sm: fontSize: 16px, lineHeight: 24px
    * xs: fontSize: 14px, lineHeight: 21px
-   * 2xs: fontSize: 12px, lineHeight: 18px
+   * xxs: fontSize: 12px, lineHeight: 18px
    * */
   size?: Sizes
   children: React.ReactNode
@@ -52,13 +52,13 @@ export function AppText({
 }
 
 const $sizeStyles = {
-  '2xl': { fontSize: 36, lineHeight: 44 } satisfies TextStyle,
+  xxl: { fontSize: 36, lineHeight: 44 } satisfies TextStyle,
   xl: { fontSize: 24, lineHeight: 34 } satisfies TextStyle,
   lg: { fontSize: 20, lineHeight: 32 } satisfies TextStyle,
   md: { fontSize: 18, lineHeight: 26 } satisfies TextStyle,
   sm: { fontSize: 16, lineHeight: 24 } satisfies TextStyle,
   xs: { fontSize: 14, lineHeight: 21 } satisfies TextStyle,
-  '2xs': { fontSize: 12, lineHeight: 18 } satisfies TextStyle
+  xxs: { fontSize: 12, lineHeight: 18 } satisfies TextStyle
 }
 
 const $fontWeightStyles = Object.entries(typography.primary).reduce(
@@ -81,7 +81,7 @@ const $variants = {
 
   heading: [
     $baseStyle,
-    $sizeStyles['2xl'],
+    $sizeStyles.xxl,
     $fontWeightStyles.bold
   ] as StyleProp<TextStyle>,
 

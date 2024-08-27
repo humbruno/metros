@@ -1,5 +1,4 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 export const FONTS_TO_LOAD = {
@@ -12,7 +11,13 @@ export const FONTS_TO_LOAD = {
   'Onest-Regular': require('@/assets/fonts/Onest-Regular.ttf'),
   'Onest-SemiBold': require('@/assets/fonts/Onest-SemiBold.ttf'),
   'Onest-Thin': require('@/assets/fonts/Onest-Thin.ttf'),
-  FontAwesome: FontAwesome.font,
-  MaterialCommunityIcons: MaterialCommunityIcons.font,
+  Ionicons: Ionicons.font,
   MaterialIcons: MaterialIcons.font
+}
+
+export enum Lines {
+  Yellow = 'Amarela',
+  Green = 'Verde',
+  Blue = 'Azul',
+  Red = 'Vermelha'
 }

@@ -23,13 +23,6 @@ const palette = {
   neutral800: '#191015',
   neutral900: '#000000',
 
-  primary100: '#F4E0D9',
-  primary200: '#E8C1B4',
-  primary300: '#DDA28E',
-  primary400: '#D28468',
-  primary500: '#C76542',
-  primary600: '#A54F31',
-
   secondary100: '#DCDDE9',
   secondary200: '#BCC0D6',
   secondary300: '#9196B9',
@@ -45,6 +38,18 @@ const palette = {
   angry100: '#F2D6CD',
   angry500: '#C03403',
 
+  red: '#FCD2DF',
+  red200: '#A52160',
+
+  blue: '#DCDFF0',
+  blue200: '#4E61B6',
+
+  yellow: '#FEF0D0',
+  yellow200: '#EBA90D',
+
+  green: '#D8F3DC',
+  green200: '#606c38',
+
   overlay20: 'rgba(25, 16, 21, 0.2)',
   overlay50: 'rgba(25, 16, 21, 0.5)'
 } as const
@@ -52,11 +57,26 @@ const palette = {
 export const colors = {
   palette,
   transparent: 'rgba(0, 0, 0, 0)',
+
+  redLine: palette.red,
+  redLineAccent: palette.red200,
+
+  blueLine: palette.blue,
+  blueLineAccent: palette.blue200,
+
+  yellowLine: palette.yellow,
+  yellowLineAccent: palette.yellow200,
+
+  greenLine: palette.green,
+  greenLineAccent: palette.green200,
+
+  primary: '#2F2762',
+  inactive: '#B3B3B3',
+
   text: palette.neutral800,
   textDim: palette.neutral600,
   background: palette.neutral200,
   border: palette.neutral400,
-  tint: palette.primary500,
   separator: palette.neutral300,
   error: palette.angry500,
   errorBackground: palette.angry100
@@ -68,13 +88,13 @@ export const typography = {
 }
 
 export const spacing = {
-  '3xs': 2,
-  '2xs': 4,
+  xxxs: 2,
+  xxs: 4,
   xs: 8,
   sm: 12,
   md: 16,
   lg: 24,
   xl: 32,
-  '2xl': 48,
-  '3xl': 64
+  xxl: 48,
+  xxxl: 64
 } as const

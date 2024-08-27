@@ -1,3 +1,4 @@
+import { FavouritedStation } from '@/lib/types'
 import { MMKV } from 'react-native-mmkv'
 import { create } from 'zustand'
 import { createJSONStorage, persist, StateStorage } from 'zustand/middleware'
@@ -11,11 +12,13 @@ const storage: StateStorage = {
 }
 
 type State = {
-  favouriteStations: string[] | null
+  favouriteStations: FavouritedStation[] | null
 }
 
 type Actions = {
-  setFavouriteStations: (favouriteStations: string[] | null) => void
+  toggleFavouriteStation: (station: FavouritedStation) => void
+  addFavouriteStation: (station: FavouritedStation) => void
+  removeFavouriteStation: (favouriteStation: FavouritedStation) => void
   clearStore: () => void
 }
 
@@ -27,12 +30,35 @@ const initialState: State = {
 
 export const useUserStore = create<UserStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       //state
       ...initialState,
 
       //actions
-      setFavouriteStations: (favouriteStations) => set({ favouriteStations }),
+      toggleFavouriteStation: (station) => {
+        const currentFavourites = get().favouriteStations
+        const isAlreadyFavourited = !!currentFavourites?.find(
+          (v) => v.stop_id === station.stop_id && v.destino === station.destino
+        )
+
+        if (isAlreadyFavourited) {
+          get().removeFavouriteStation(station)
+        } else {
+          get().addFavouriteStation(station)
+        }
+      },
+      addFavouriteStation: (station) =>
+        set((state) => ({
+          favouriteStations: [...(state.favouriteStations || []), station]
+        })),
+      removeFavouriteStation: (favouriteStation) =>
+        set((state) => ({
+          favouriteStations: state.favouriteStations?.filter(
+            (item) =>
+              item.stop_id !== favouriteStation.stop_id &&
+              item.destino !== favouriteStation.destino
+          )
+        })),
       clearStore: () => set(initialState)
     }),
     {

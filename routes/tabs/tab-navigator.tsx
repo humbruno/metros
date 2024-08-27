@@ -1,6 +1,5 @@
-import { spacing } from '@/lib/theme'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import { colors, spacing, typography } from '@/lib/theme'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet } from 'react-native'
@@ -22,11 +21,12 @@ export function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarInactiveTintColor: 'gray',
-        tabBarActiveTintColor: 'blue',
-        tabBarLabelStyle: styles.tabBarLabel,
-        tabBarIconStyle: styles.tabBarIcon,
-        tabBarStyle: styles.tabBar
+        tabBarInactiveTintColor: colors.inactive,
+        tabBarActiveTintColor: colors.primary,
+        tabBarStyle: styles.tabBar,
+        tabBarLabel: '',
+        headerStyle: styles.headerStyle,
+        headerTitleStyle: styles.headerTitleStyle
       }}
     >
       <Tab.Screen
@@ -34,8 +34,12 @@ export function TabNavigator() {
         component={FavouritesTab}
         options={{
           title: 'Favourites',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="favorite" color={color} size={size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <MaterialIcons
+              name={focused ? 'favorite' : 'favorite-outline'}
+              color={color}
+              size={size}
+            />
           )
         }}
       />
@@ -44,8 +48,12 @@ export function TabNavigator() {
         component={AllStationsTab}
         options={{
           title: 'All Stations',
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="map-signs" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'hourglass' : 'hourglass-outline'}
+              size={size}
+              color={color}
+            />
           )
         }}
       />
@@ -54,8 +62,12 @@ export function TabNavigator() {
         component={LinesStatusTab}
         options={{
           title: 'Lines',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="railway-alert" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'alert-circle' : 'alert-circle-outline'}
+              size={size}
+              color={color}
+            />
           )
         }}
       />
@@ -64,9 +76,9 @@ export function TabNavigator() {
         component={AboutTab}
         options={{
           title: 'About',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="information"
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name={focused ? 'settings' : 'settings-outline'}
               size={size}
               color={color}
             />
@@ -78,11 +90,11 @@ export function TabNavigator() {
 }
 
 const styles = StyleSheet.create({
-  tabBar: {
-    paddingVertical: spacing.sm
+  tabBar: { height: 100, paddingTop: spacing.sm },
+  headerTitleStyle: {
+    color: '#fff',
+    fontSize: 24,
+    fontFamily: typography.primary.bold
   },
-  tabBarIcon: {
-    marginTop: -3
-  },
-  tabBarLabel: {}
+  headerStyle: { backgroundColor: colors.primary }
 })
